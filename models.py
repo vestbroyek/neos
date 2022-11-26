@@ -34,7 +34,11 @@ class NearEarthObject:
     """
     def __init__(self, designation: str, name: str, diameter: float, hazardous: bool, approaches: list, **info):
         """Create a new `NearEarthObject`.
-        :param designation:        
+        :param designation:     The NEO's primary designation (pdes) e.g. 433
+        :param name:            The NEO's name, e.g. Eros. Not always available.
+        :param diameter:        The NEO's diameter in km 
+        :param hazardous:       Whether the NEO was potentially hazardous (pha)
+        :param approaches:      A list of the NEO's approaches 
         :param info:            A dictionary of excess keyword arguments supplied to the constructor.
         """
         # TODO: coerce these values to their appropriate data type and handle any edge cases, 

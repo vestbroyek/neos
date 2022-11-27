@@ -90,7 +90,7 @@ class CloseApproach:
     """
     # TODO: How can you, and should you, change the arguments to this constructor?
     # If you make changes, be sure to update the comments in this file.
-    def __init__(self, time: datetime, distance: float, velocity: float, neo: NearEarthObject = None, **info):
+    def __init__(self, time: datetime, distance: float, velocity: float, _designation: str, neo: NearEarthObject = None, **info):
         """Create a new `CloseApproach`.
 
         :param time:        The time of the close approach
@@ -100,7 +100,7 @@ class CloseApproach:
         :param info:        A dictionary of excess keyword arguments supplied to the constructor.
         """
         # TODO: coerce these values to their appropriate data type and handle any edge cases.
-        self._designation = neo.fullname if neo is not None else None
+        self._designation = str(_designation)
         self.time = cd_to_datetime(time)
         self.distance = float(distance)
         self.velocity = float(velocity)

@@ -42,3 +42,11 @@ def datetime_to_str(dt):
     :return: That datetime, as a human-readable string without seconds.
     """
     return datetime.datetime.strftime(dt, "%Y-%m-%d %H:%M")
+
+def parse_y_n_bool(value: str):
+    """
+    Parse 'Y' as True and 'N' as False
+    :param value: Y or N
+    :returns bool: True if Y and False if N
+    """
+    return True if value == "Y" else False

@@ -17,7 +17,7 @@ quirks of the data set, such as missing names and unknown diameters.
 
 You'll edit this file in Task 1.
 """
-from helpers import cd_to_datetime, datetime_to_str
+from helpers import cd_to_datetime, datetime_to_str, parse_y_n_bool
 from datetime import datetime
 
 
@@ -45,9 +45,9 @@ class NearEarthObject:
         # TODO: coerce these values to their appropriate data type and handle any edge cases, 
         # such as a empty name being represented by `None`
         self.designation = str(designation)
-        self.name = name 
-        self.diameter = diameter
-        self.hazardous = True if hazardous == 'Y' else False # there are also some missing values here 
+        self.name = name if name is not None else None
+        self.diameter = float('nan') if diameter == '' else float(diameter)
+        self.hazardous = parse_y_n_bool(hazardous) if hazardous is not None else None # there are also some missing values here 
 
         # Create an empty initial collection of linked approaches.
         self.approaches = approaches

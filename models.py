@@ -67,7 +67,7 @@ class NearEarthObject:
             hazardous = "not hazardous"
         else:
             hazardous = "hazardous"
-        return f"{self.fullname}, which has a diameter of {self.diameter:.3f} and is {hazardous}"
+        return f"{self.fullname}, which has a diameter of {self.diameter:.3f} km and is {hazardous}"
 
     def __repr__(self):
         """Return `repr(self)`, a computer-readable string representation of this object."""

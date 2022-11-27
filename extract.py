@@ -45,6 +45,6 @@ def load_approaches(cad_json_path):
         contents = json.load(f)
 
     for row in contents['data']: # 'data' key is list of records, each record is a list
-        cas.append(CloseApproach(row[3], row[4], row[7]))
+        cas.append(CloseApproach(time = row[3], distance = row[4], velocity = row[7], _designation = row[0]))
 
     return cas

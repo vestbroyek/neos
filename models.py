@@ -45,7 +45,7 @@ class NearEarthObject:
         # TODO: coerce these values to their appropriate data type and handle any edge cases, 
         # such as a empty name being represented by `None`
         self.designation = str(designation)
-        self.name = name if name is not None else None
+        self.name = name if name else None
         self.diameter = float('nan') if diameter == '' else float(diameter)
         self.hazardous = parse_y_n_bool(hazardous) if hazardous is not None else None # there are also some missing values here 
 

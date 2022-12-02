@@ -29,6 +29,20 @@ def write_to_csv(results, filename):
         'designation', 'name', 'diameter_km', 'potentially_hazardous'
     )
     # TODO: Write the results to a CSV file, following the specification in the instructions.
+    with open(filename, 'w', newline = '') as outfile:
+        writer = csv.writer(outfile, quoting=csv.QUOTE_NONNUMERIC)
+        # first write a header row
+        writer.writerow(fieldnames)
+        for ca in results:
+            writer.writerow(
+                [ca.time, 
+                ca.distance, 
+                ca.velocity, 
+                ca._designation, 
+                ca.neo.name, 
+                ca.neo.diameter, 
+                ca.neo.hazardous])
+
 
 
 def write_to_json(results, filename):
@@ -43,3 +57,10 @@ def write_to_json(results, filename):
     :param filename: A Path-like object pointing to where the data should be saved.
     """
     # TODO: Write the results to a JSON file, following the specification in the instructions.
+    result_list = []
+    for ca in results:
+        formatted_result = ca.serialize()
+        formatted_result.update({"neo": ca.neo.serialize()})
+        result_list.append(formatted_result)
+    with open(filename, 'w') as outfile:
+        json.dump(result_list, outfile, indent=2)

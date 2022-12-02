@@ -56,7 +56,6 @@ class NEODatabase:
         # NEOs by designation and by name: use a NEO designation or name to find the corresponding NEO
         neos_by_designation = {neo.designation: neo for neo in self._neos}
 
-        # TODO: Link together the NEOs and their close approaches.
         # 1. each neo's .approaches attribute needs to be a list of CAs
         for neo in self._neos:
             neo.approaches = cas_lookup_dict[neo.designation]
@@ -78,7 +77,6 @@ class NEODatabase:
         :param designation: The primary designation of the NEO to search for.
         :return: The `NearEarthObject` with the desired primary designation, or `None`.
         """
-        # TODO: Fetch an NEO by its primary designation.
         neos_by_designation = {neo.designation: neo for neo in self._neos}
         try: 
             return neos_by_designation[designation]

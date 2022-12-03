@@ -39,6 +39,7 @@ class AttributeFilter:
     Concrete subclasses can override the `get` classmethod to provide custom
     behavior to fetch a desired attribute from the given `CloseApproach`.
     """
+
     def __init__(self, op, value):
         """Construct a new `AttributeFilter` from an binary predicate and a reference value.
 
@@ -70,36 +71,52 @@ class AttributeFilter:
         raise UnsupportedCriterionError
 
     def __repr__(self):
+        """Return a printable representation."""
         return f"{self.__class__.__name__}(op=operator.{self.op.__name__}, value={self.value})"
 
 
 class DateFilter(AttributeFilter):
+    """Filter an approach based on a date (not datetime)."""
+
     @classmethod
     def get(cls, approach):
+        """Class method for fetching a specific attribute of the approach object, in this case approach date."""
         return approach.time.date()  # return as date, not datetime, to allow for comparability
 
 
 class DistanceFilter(AttributeFilter):
+    """Filter an approach based on approach distance."""
+
     @classmethod
     def get(cls, approach):
+        """Class method for fetching a specific attribute of the approach object, in this approach distance."""
         return approach.distance
 
 
 class VelocityFilter(AttributeFilter):
+    """Filter approach based on velocity."""
+
     @classmethod
     def get(cls, approach):
+        """Class method for fetching a specific attribute of the approach object, in this case approach velocity."""
         return approach.velocity
 
 
 class DiameterFilter(AttributeFilter):
+    """Filter based on NEO diameter distance."""
+
     @classmethod
     def get(cls, approach):
+        """Class method for fetching a specific attribute of the approach object, in this case the associated NEO's diameter."""
         return approach.neo.diameter
 
 
 class HazardousFilter(AttributeFilter):
+    """Filter based on NEO's potentially hazardous status."""
+
     @classmethod
     def get(cls, approach):
+        """Class method for fetching a specific attribute of the approach object, in this the associated NEO's hazardous status."""
         return approach.neo.hazardous
 
 

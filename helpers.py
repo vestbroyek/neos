@@ -46,7 +46,8 @@ def datetime_to_str(dt):
 
 def parse_y_n_bool(value: str):
     """
-    Parse 'Y' as True and 'N' as False
+    Parse 'Y' as True and 'N' as False.
+
     :param value: Y or N
     :returns bool: True if Y and False if N
     """

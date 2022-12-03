@@ -43,12 +43,7 @@ class NEODatabase:
         """
         self._neos = neos
         self._approaches = approaches
-
-        # helper structures: two lookup dictionaries like 
-        # {NEO designation = [list of CAs]}
-        # {CA = NEO}
-
-        # CAs lookup dict: use a NEO designation to find a corresponding list of CAs
+        # CAs lookup dict: use a NEO designation to find a corresponding list of CAs
         cas_lookup_dict = defaultdict(list)
         for ca in self._approaches:
             cas_lookup_dict[ca._designation].append(ca)
@@ -56,7 +51,7 @@ class NEODatabase:
         # NEOs by designation and by name: use a NEO designation or name to find the corresponding NEO
         neos_by_designation = {neo.designation: neo for neo in self._neos}
 
-        # 1. each neo's .approaches attribute needs to be a list of CAs
+        # 1. each neo's .approaches attribute needs to be a list of CAs
         for neo in self._neos:
             neo.approaches = cas_lookup_dict[neo.designation]
 
@@ -78,7 +73,7 @@ class NEODatabase:
         :return: The `NearEarthObject` with the desired primary designation, or `None`.
         """
         neos_by_designation = {neo.designation: neo for neo in self._neos}
-        try: 
+        try:
             return neos_by_designation[designation]
         except KeyError:
             return None
@@ -117,7 +112,7 @@ class NEODatabase:
         :param filters: A collection of filters capturing user-specified criteria.
         :return: A stream of matching `CloseApproach` objects.
         """
-        if not filters: # return all if no args are provided 
+        if not filters:  # return all if no args are provided
             yield from self._approaches
 
         for approach in self._approaches:

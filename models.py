@@ -37,15 +37,15 @@ class NearEarthObject:
         """Create a new `NearEarthObject`.
         :param designation:     The NEO's primary designation (pdes) e.g. 433
         :param name:            The NEO's name, e.g. Eros. Not always available.
-        :param diameter:        The NEO's diameter in km 
+        :param diameter:        The NEO's diameter in km
         :param hazardous:       Whether the NEO was potentially hazardous (pha)
-        :param approaches:      A list of the NEO's approaches 
+        :param approaches:      A list of the NEO's approaches
         :param info:            A dictionary of excess keyword arguments supplied to the constructor.
         """
         self.designation = str(designation)
         self.name = name if name else None
         self.diameter = float('nan') if diameter == '' else float(diameter)
-        self.hazardous = parse_y_n_bool(hazardous) if hazardous is not None else None # there are also some missing values here 
+        self.hazardous = parse_y_n_bool(hazardous) if hazardous is not None else None  # there are also some missing values here
 
         # Create an empty initial collection of linked approaches.
         self.approaches = approaches
@@ -53,9 +53,9 @@ class NearEarthObject:
     @property
     def fullname(self):
         """Return a representation of the full name of this NEO."""
-        if self.name: # if name is not none, return it alongside the designation, like 433 Eros
+        if self.name:  # if name is not none, return it alongside the designation, like 433 Eros
             return self.designation + " " + self.name
-        else: # otherwise just use designation
+        else:  # otherwise just use designation
             return self.designation
 
     def __str__(self):
@@ -77,8 +77,7 @@ class NearEarthObject:
             "designation": self.designation,
             "name": self.name,
             "diameter_km": self.diameter,
-            "potentially_hazardous": self.hazardous
-            }
+            "potentially_hazardous": self.hazardous}
 
 
 class CloseApproach:
@@ -134,11 +133,10 @@ class CloseApproach:
         """Return `repr(self)`, a computer-readable string representation of this object."""
         return f"CloseApproach(time={self.time_str!r}, distance={self.distance:.2f}, " \
                f"velocity={self.velocity:.2f}, neo={self.neo!r})"
-    
+
     def serialize(self):
         """Return serialised representation"""
         return {
             "datetime_utc": datetime_to_str(self.time),
             "distance_au": self.distance,
-            "velocity_km_s": self.velocity
-            }
+            "velocity_km_s": self.velocity}

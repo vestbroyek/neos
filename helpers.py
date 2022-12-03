@@ -43,6 +43,7 @@ def datetime_to_str(dt):
     """
     return datetime.datetime.strftime(dt, "%Y-%m-%d %H:%M")
 
+
 def parse_y_n_bool(value: str):
     """
     Parse 'Y' as True and 'N' as False

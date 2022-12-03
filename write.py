@@ -28,20 +28,20 @@ def write_to_csv(results, filename):
         'datetime_utc', 'distance_au', 'velocity_km_s',
         'designation', 'name', 'diameter_km', 'potentially_hazardous'
     )
-    with open(filename, 'w', newline = '') as outfile:
+    with open(filename, 'w', newline='') as outfile:
         writer = csv.writer(outfile, quoting=csv.QUOTE_NONNUMERIC)
-        # first write a header row
+        # first write a header row
         writer.writerow(fieldnames)
         for ca in results:
             writer.writerow(
-                [ca.time, 
-                ca.distance, 
-                ca.velocity, 
-                ca._designation, 
-                ca.neo.name, 
-                ca.neo.diameter, 
-                ca.neo.hazardous])
-
+                [
+                    ca.time,
+                    ca.distance,
+                    ca.velocity,
+                    ca._designation,
+                    ca.neo.name,
+                    ca.neo.diameter,
+                    ca.neo.hazardous])
 
 
 def write_to_json(results, filename):

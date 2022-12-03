@@ -72,28 +72,33 @@ class AttributeFilter:
     def __repr__(self):
         return f"{self.__class__.__name__}(op=operator.{self.op.__name__}, value={self.value})"
 
+
 class DateFilter(AttributeFilter):
-    @classmethod 
+    @classmethod
     def get(cls, approach):
-        return approach.time.date() # return as date, not datetime, to allow for comparability
+        return approach.time.date()  # return as date, not datetime, to allow for comparability
+
 
 class DistanceFilter(AttributeFilter):
     @classmethod
     def get(cls, approach):
         return approach.distance
 
+
 class VelocityFilter(AttributeFilter):
     @classmethod
     def get(cls, approach):
         return approach.velocity
+
 
 class DiameterFilter(AttributeFilter):
     @classmethod
     def get(cls, approach):
         return approach.neo.diameter
 
+
 class HazardousFilter(AttributeFilter):
-    @classmethod 
+    @classmethod
     def get(cls, approach):
         return approach.neo.hazardous
 
@@ -142,10 +147,10 @@ def create_filters(
         return_filters.append(DateFilter(operator.ge, start_date))
     if end_date is not None:
         return_filters.append(DateFilter(operator.le, end_date))
-    # distance
+    # distance
     if distance_min is not None:
         return_filters.append(DistanceFilter(operator.ge, distance_min))
-    if distance_max is not None:   
+    if distance_max is not None:
         return_filters.append(DistanceFilter(operator.le, distance_max))
     # velocity
     if velocity_min is not None:
@@ -155,9 +160,9 @@ def create_filters(
     # diameter
     if diameter_min is not None:
         return_filters.append(DiameterFilter(operator.ge, diameter_min))
-    if diameter_max is not None: 
+    if diameter_max is not None:
         return_filters.append(DiameterFilter(operator.le, diameter_max))
-    # hazardous
+    # hazardous
     if hazardous is not None:
         return_filters.append(HazardousFilter(operator.eq, hazardous))
 
@@ -180,4 +185,4 @@ def limit(iterator, n=None):
                 yield element
     else:
         for i, element in enumerate(iterator):
-            yield element 
+            yield element
